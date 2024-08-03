@@ -8,9 +8,9 @@
 <body>
     <h1>Admin Page</h1>
     <input type="color" id="colorPicker">
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script>
-        const socket = io();
+        const socket = io('http://<your-ec2-public-ip>:3000');
 
         document.getElementById('colorPicker').addEventListener('input', (event) => {
             const color = event.target.value;
