@@ -10,7 +10,7 @@
     <input type="color" id="colorPicker">
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script>
-        const socket = io('http://<your-ec2-public-ip>:3000');
+        const socket = io('http://34.204.61.113:3000');
 
         document.getElementById('colorPicker').addEventListener('input', (event) => {
             const color = event.target.value;

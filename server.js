@@ -37,6 +37,7 @@ io.on('connection', (socket) => {
     });
 });
 
-module.exports = (req, res) => {
-    server.emit('request', req, res);
-};
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+
+module.exports = app;
