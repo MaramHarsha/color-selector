@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Admin Page</h1>
+    <input type="color" id="colorPicker">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        document.getElementById('colorPicker').addEventListener('input', (event) => {
+            const color = event.target.value;
+            socket.emit('colorChange', color);
+        });
+
+        socket.on('colorChange', (color) => {
+            document.body.style.backgroundColor = color;
+        });
+    </script>
+</body>
+</html>
