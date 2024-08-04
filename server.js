@@ -1,11 +1,24 @@
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
+const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+    cors: {
+        origin: "https://color-selector-two.vercel.app",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+});
+
+app.use(cors({
+    origin: "https://color-selector-two.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 
 const mongoUrl = process.env.MONGODB_URI || 'mongodb://localhost:27017';
 const dbName = 'colorSelector';
@@ -37,12 +50,5 @@ io.on('connection', (socket) => {
     });
 });
 
-// Default route
-app.get('/', (req, res) => {
-    res.send('Backend is working!');
-});
-
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
-
-module.exports = app;
